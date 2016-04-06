@@ -1,0 +1,29 @@
+---
+title: "Group6_PlotReplicate_FMScore"
+author: "Goh Him Ling, Florence Wai"
+date: "April 7, 2016"
+output: pdf_document
+---
+
+## IS4250 Final Report - Duplicate Plot of FM Scores
+
+
+```{r}
+data <- read.csv(file="FMScore.csv", head=TRUE, sep=",")
+print(data)
+```
+
+
+```{r}
+score <- data$Score
+disc <- data$Discrepancy
+plot.new()
+x <- barplot(score, main="FM Score [0-66]", ylab="Score", ylim=range(0:66), col=c("black", "white", "grey"))
+xHigh <- x
+xLow <- x
+yHigh <- score + disc
+yLow <- score
+arrows(xHigh, yHigh, xLow, yLow, col=2, angle=90, length=0.4, code=3)
+legend("topright", legend=data$Week, fill=c("black","white","grey"), xjust=1, yjust=1)
+```
+
